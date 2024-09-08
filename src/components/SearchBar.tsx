@@ -8,10 +8,13 @@ interface SearchBarProps {
 function SearchBar({ setWeatherData }: SearchBarProps) {
   const [searchInputValue, setSearchInputValue] = useState("");
 
-  const fetchApi = async () => {
-    await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Dubai&units=metric&appid=756edc072ecb1a813e71e3ffd09e683c" //don't panic I'll delete this key
-    )
+  const fetchApi = async (location: string) => {
+    console.log("fetching for", location);
+
+    const key = "756edc072ecb1a813e71e3ffd09e683c"; //don't panic I'll delete this key
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${key}`;
+
+    await fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setWeatherData(data);
@@ -23,7 +26,7 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
   const handleSearch = () => {
     let searchPhrase = searchInputValue.trim();
     if (searchPhrase === "") return;
-    fetchApi();
+    fetchApi(searchPhrase);
   };
 
   return (
@@ -36,7 +39,7 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
         placeholder="Search for a city"
       />
       <button
-        className="rounded-full bg-white w-12 aspect-square p-3"
+        className="rounded-full bg-white w-12 aspect-square p-[.78rem]"
         onClick={handleSearch}
       >
         <IoSearch className="w-full h-full" />
