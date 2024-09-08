@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import SearchResults from "./SearchResults";
+import cityArray from "../../data/cities";
 
 interface SearchBarProps {
   setWeatherData: (data: any) => void;
@@ -7,6 +9,7 @@ interface SearchBarProps {
 
 function SearchBar({ setWeatherData }: SearchBarProps) {
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchResults, setSearchResults] = useState(cityArray);
 
   const fetchApi = async (location: string) => {
     console.log("fetching for", location);
@@ -18,7 +21,7 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
       .then((res) => res.json())
       .then((data) => {
         if (data?.message == "city not found") {
-          alert("City not found");
+          alert(`City ${location} not found`);
           return;
         }
         setWeatherData(data);
@@ -30,17 +33,33 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
     let searchPhrase = searchInputValue.trim();
     if (searchPhrase === "") return;
     fetchApi(searchPhrase);
+    setSearchInputValue("");
+  };
+
+  const handleChangeInput = (inputValue: string) => {
+    setSearchInputValue(inputValue);
+
+    const results = cityArray.filter((city: string) =>
+      city.toLowerCase().includes(inputValue.trim().toLowerCase())
+    );
+    setSearchResults(results);
   };
 
   return (
-    <div className="w-full flex justify-center gap-5 p-5 text-lg text-black">
+    <div className="w-full flex justify-center gap-5 p-5 pb-0 text-lg text-black relative">
       <input
         value={searchInputValue}
-        onChange={(e) => setSearchInputValue(e.target.value)}
+        onChange={(e) => handleChangeInput(e.target.value)}
         type="text"
         className="w-[70%] p-2 px-5 focus:outline-none rounded-full"
         placeholder="Search for a city"
       />
+      {searchInputValue && (
+        <SearchResults
+          searchResults={searchResults}
+          setSearchInputValue={setSearchInputValue}
+        />
+      )}
       <button
         className="rounded-full bg-white w-12 aspect-square p-[.78rem]"
         onClick={handleSearch}

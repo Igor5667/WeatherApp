@@ -13,14 +13,14 @@ function FurtherInfo({ weatherData, className }: FurtherInfoProps) {
         <LiaWaterSolid />
         {weatherData?.main?.humidity
           ? `${weatherData?.main?.humidity} %`
-          : "NO DATA YET"}
+          : "NO DATA"}
       </Section>
 
       <Section description="Wind">
         <LuWind />
         {weatherData?.wind?.speed
           ? `${weatherData?.wind?.speed} m/s`
-          : "NO DATA YET"}
+          : "NO DATA"}
       </Section>
     </div>
   );
