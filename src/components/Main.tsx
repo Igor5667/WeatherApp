@@ -6,7 +6,7 @@ interface MainProps {
 function MainInfo({ weatherData, className }: MainProps) {
   return (
     <div
-      className={`flex flex-col justify-center items-center gap-4 text-3xl ${className}`}
+      className={`w-[80%] flex flex-col justify-center items-center gap-4 lg:gap-0 text-6xl ${className}`}
     >
       <li className="text-wrap list-none">
         {weatherData["name"] ?? "NO DATA YET"}
@@ -15,7 +15,7 @@ function MainInfo({ weatherData, className }: MainProps) {
       <img
         src={`${weatherData?.weather?.[0]?.main.toLowerCase()}.png`}
         alt={weatherData?.weather?.[0]?.main.toLowerCase()}
-        width={100}
+        className="w-[60%]"
       />
 
       <li className="text-wrap list-none">

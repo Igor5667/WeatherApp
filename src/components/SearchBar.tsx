@@ -17,10 +17,13 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
     await fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        if (data?.message == "city not found") {
+          alert("City not found");
+          return;
+        }
         setWeatherData(data);
         console.log(data);
-      })
-      .catch((err) => console.log("ERROR WHILE FETCHING", err));
+      });
   };
 
   const handleSearch = () => {

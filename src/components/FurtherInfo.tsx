@@ -8,7 +8,7 @@ interface FurtherInfoProps {
 
 function FurtherInfo({ weatherData, className }: FurtherInfoProps) {
   return (
-    <div className={`flex justify-between w-[70%] text-3xl ${className}`}>
+    <div className={`flex justify-between w-[75%] text-3xl ${className}`}>
       <Section description="Humidity">
         <LiaWaterSolid />
         {weatherData?.main?.humidity
@@ -33,9 +33,9 @@ interface SectionProps {
 
 function Section({ children, description }: SectionProps) {
   return (
-    <div className="flex flex-col gap-3 border p-5 rounded-2xl">
+    <div className="flex flex-col gap-1">
       <div className="flex flex-row items-center gap-3 ">{children}</div>
-      <div className="text-sm text-center -mt-2">{description}</div>
+      <div className="text-sm text-center">{description}</div>
     </div>
   );
 }
