@@ -30,7 +30,7 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
   };
 
   return (
-    <div className="w-full flex justify-center gap-5 p-5 text-lg">
+    <div className="w-full flex justify-center gap-5 p-5 text-lg text-black">
       <input
         value={searchInputValue}
         onChange={(e) => setSearchInputValue(e.target.value)}

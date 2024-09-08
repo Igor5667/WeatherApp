@@ -5,25 +5,23 @@ interface MainProps {
 
 function MainInfo({ weatherData, className }: MainProps) {
   return (
-    <div className={`${className}`}>
+    <div
+      className={`flex flex-col justify-center items-center gap-4 text-3xl ${className}`}
+    >
       <li className="text-wrap list-none">
         {weatherData["name"] ?? "NO DATA YET"}
       </li>
+
+      <img
+        src={`${weatherData?.weather?.[0]?.main.toLowerCase()}.png`}
+        alt={weatherData?.weather?.[0]?.main.toLowerCase()}
+        width={100}
+      />
 
       <li className="text-wrap list-none">
         {weatherData?.main?.temp
           ? `${weatherData?.main?.temp.toFixed(0)} °C`
           : "NO DATA YET"}
-      </li>
-
-      <li className="text-wrap list-none">
-        {weatherData?.weather?.[0]?.main ? (
-          <h1 className="text-xl">
-            to będzie img: {weatherData?.weather?.[0]?.main.toLowerCase()}.png
-          </h1>
-        ) : (
-          "NO DATA YET"
-        )}
       </li>
     </div>
   );
