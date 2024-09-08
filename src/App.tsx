@@ -1,4 +1,6 @@
 import { useState } from "react";
+import SearchBar from "./components/SearchBar";
+import Main from "./components/Main";
 
 function App() {
   const [weatherData, setWeatherData] = useState<any>({});
@@ -17,14 +19,8 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex justify-center flex-col items-center bg-main-background">
-      <button
-        className="bg-red-600 text-white text-2xl font-semibold p-5 rounded-lg hover:bg-red-700 shadow-sm 
-        active:translate-y-[5px] active:shadow-none transition"
-        onClick={fetchApi}
-      >
-        CLICK ME AND CHECK OUT DOWN HERE
-      </button>
-
+      <SearchBar />
+      <Main />
       <li className="text-wrap list-none">
         {weatherData["name"] ?? "NO DATA YET"}
       </li>
