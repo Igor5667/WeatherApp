@@ -24,7 +24,24 @@ function App() {
       >
         CLICK ME AND CHECK OUT DOWN HERE
       </button>
-      <p className="text-wrap">{weatherData["name"] ?? "NO DATA YET"}</p>
+      <li className="text-wrap list-none">
+        {weatherData["name"] ?? "NO DATA YET"}
+      </li>
+      <li className="text-wrap list-none">
+        {weatherData?.main?.temp
+          ? `${weatherData?.main?.temp.toFixed(0)} °C`
+          : "NO DATA YET"}
+      </li>
+
+      <li className="text-wrap list-none">
+        {weatherData?.weather?.[0]?.main ? (
+          <h1 className="text-3xl">
+            to będzie img: {weatherData?.weather?.[0]?.main.toLowerCase()}.png
+          </h1>
+        ) : (
+          "NO DATA YET"
+        )}
+      </li>
     </div>
   );
 }
