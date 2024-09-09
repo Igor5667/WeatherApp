@@ -37,12 +37,18 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
     setSearchInputValue("");
   };
 
+  const removeDiacritics = (str: string) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
+
   const handleChangeInput = (inputValue: string) => {
     setSearchInputValue(inputValue);
 
     console.log(inputValue);
     const results = cityArray.filter((city: string) =>
-      city.toLowerCase().includes(inputValue.toLowerCase())
+      removeDiacritics(city.toLowerCase()).includes(
+        removeDiacritics(inputValue.toLowerCase())
+      )
     );
     setSearchResults(results);
     setShowSearchResults(results.length > 0);
