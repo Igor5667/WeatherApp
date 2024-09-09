@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import SearchResults from "./SearchResults";
 import cityArray from "../../data/cities";
@@ -10,6 +10,7 @@ interface SearchBarProps {
 function SearchBar({ setWeatherData }: SearchBarProps) {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchResults, setSearchResults] = useState(cityArray);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   const fetchApi = async (location: string) => {
     console.log("fetching for", location);
@@ -39,11 +40,19 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
   const handleChangeInput = (inputValue: string) => {
     setSearchInputValue(inputValue);
 
+    console.log(inputValue);
     const results = cityArray.filter((city: string) =>
-      city.toLowerCase().includes(inputValue.trim().toLowerCase())
+      city.toLowerCase().includes(inputValue.toLowerCase())
     );
     setSearchResults(results);
+    setShowSearchResults(results.length > 0);
   };
+
+  useEffect(() => {
+    if (searchInputValue === "") {
+      setShowSearchResults(false);
+    }
+  }, [searchInputValue]);
 
   return (
     <div className="w-full flex justify-center gap-5 p-5 pb-0 text-lg text-black relative">
@@ -54,10 +63,11 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
         className="w-[70%] p-2 px-5 focus:outline-none rounded-full"
         placeholder="Search for a city"
       />
-      {searchInputValue && (
+      {showSearchResults && (
         <SearchResults
           searchResults={searchResults}
           setSearchInputValue={setSearchInputValue}
+          setShowSearchResults={setShowSearchResults}
         />
       )}
       <button
