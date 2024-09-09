@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --first-color-text-background: #fafafa;
+  --second-color-text-background: #e0c7ff;
+  --third-color-text-background: #b6ffe9;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
-  text-shadow: #00000077 0px 0 10px;
+  text-shadow: #00000054 0px 0 10px;
 }
 
 input {
@@ -20,4 +26,22 @@ body {
   justify-content: center;
   align-items: center;
   height: 100svh;
+}
+
+h1 {
+  text-shadow: none;
+  font-weight: 500;
+  background: linear-gradient(
+    to right,
+    var(--first-color-text-background),
+    var(--second-color-text-background),
+    var(--third-color-text-background),
+    var(--third-color-text-background),
+    var(--first-color-text-background)
+  );
+
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
