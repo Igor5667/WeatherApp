@@ -66,10 +66,11 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
         value={searchInputValue}
         onChange={(e) => handleChangeInput(e.target.value)}
         type="text"
-        className="w-[70%] p-2 px-5 focus:outline-none rounded-full"
+        className="w-[70%] p-2 px-5 focus:outline-none rounded-full shadow-lg"
         placeholder="Search for a city"
         onKeyUp={(e) => e.key === "Enter" && handleSearch()}
       />
+
       {showSearchResults && (
         <SearchResults
           searchResults={searchResults}
@@ -77,8 +78,9 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
           setShowSearchResults={setShowSearchResults}
         />
       )}
+
       <button
-        className="rounded-full bg-white w-12 aspect-square p-[.78rem]"
+        className="rounded-full bg-white w-12 aspect-square p-[.78rem] shadow-lg"
         onClick={handleSearch}
       >
         <IoSearch className="w-full h-full" />
