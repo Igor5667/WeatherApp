@@ -8,7 +8,7 @@ function MainInfo({ weatherData, className }: MainProps) {
     <div
       className={`w-[80%] flex flex-col justify-center items-center gap-4 lg:gap-0 text-6xl ${className}`}
     >
-      <li className="text-wrap list-none">
+      <li className="text-wrap list-none text-center">
         {weatherData["name"] ?? "NO DATA"}
       </li>
 

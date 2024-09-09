@@ -62,6 +62,7 @@ function SearchBar({ setWeatherData }: SearchBarProps) {
         type="text"
         className="w-[70%] p-2 px-5 focus:outline-none rounded-full"
         placeholder="Search for a city"
+        onKeyUp={(e) => e.key === "Enter" && handleSearch()}
       />
       {showSearchResults && (
         <SearchResults
