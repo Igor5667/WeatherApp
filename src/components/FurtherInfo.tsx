@@ -19,7 +19,7 @@ function FurtherInfo({ weatherData, className }: FurtherInfoProps) {
       <Section description="Wind">
         <LuWind />
         {weatherData?.wind?.speed
-          ? `${weatherData?.wind?.speed} m/s`
+          ? `${weatherData?.wind?.speed.toFixed(1)} m/s`
           : "NO DATA"}
       </Section>
     </div>

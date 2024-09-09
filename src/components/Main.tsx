@@ -8,9 +8,9 @@ function MainInfo({ weatherData, className }: MainProps) {
     <div
       className={`w-[80%] flex flex-col justify-center items-center gap-4 lg:gap-0 text-6xl ${className}`}
     >
-      <li className="text-wrap list-none text-center">
+      <div className="text-wrap list-none text-center">
         {weatherData["name"] ?? "NO DATA"}
-      </li>
+      </div>
 
       <img
         src={`${weatherData?.weather?.[0]?.main.toLowerCase()}.png`}
@@ -18,11 +18,11 @@ function MainInfo({ weatherData, className }: MainProps) {
         className="w-[50%]"
       />
 
-      <li className="text-wrap list-none">
+      <div className="text-wrap list-none">
         {weatherData?.main?.temp
           ? `${weatherData?.main?.temp.toFixed(0)} °C`
           : "NO DATA"}
-      </li>
+      </div>
     </div>
   );
 }

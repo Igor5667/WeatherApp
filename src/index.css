@@ -16,7 +16,8 @@
   text-shadow: #00000054 0px 0 10px;
 }
 
-input {
+input,
+li {
   text-shadow: none;
 }
 
